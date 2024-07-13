@@ -9,7 +9,7 @@ func PrintGreeting() {
 	fmt.Println("Hello World!")
 }
 
-func DisplaySeprator() {
+func DisplaySeparator() {
 	fmt.Println(strings.Repeat("-", 20))
 }
 
