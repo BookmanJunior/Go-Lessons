@@ -15,11 +15,25 @@ func main() {
 	// CheckNumber(100)
 	// CheckAge(10)
 	// CheckPassword("1234")
-	// Add(5, 5)
+	// fmt.Println(Add(5, -5))
 	// CompareString("Hello", "World")
 	// fmt.Println(Max(5, 20))
 	// fmt.Println(operation(5, 10))
 	// fmt.Println(concat("Hello", "World"))
+	// fmt.Println(multiply(-5, 5))
+	// fmt.Println(ApplyOperation(-5, 5, multiply))
+	// CheckCondition(10, isNegative)
+	// CheckCondition(-10, isNegative)
+	// FormatAndPrint("test", stringToUpper)
+	// FormatAndPrint("", stringToUpper)
+	// multipler := CreateMultiplier(-5)
+	// fmt.Println(multipler())
+	// greating := CreateGreater("Welcome")
+	// fmt.Println(greating("Azam"))
+	// validator := CreateValidator("ABCDE12345*#")
+	// fmt.Println(validator("ABCDE12345*#"))
+	validator2 := CreateValidator("ABCDE12345*#")
+	fmt.Println(validator2("ABCDE12345"))
 }
 
 func PrintGreeting() {
@@ -166,6 +180,13 @@ func CheckPassword(password string) {
 }
 
 func Add(n1, n2 int) int {
+	if n1 < 0 {
+		n1 = -n1
+	}
+
+	if n2 < 0 {
+		n2 = -n2
+	}
 	return n1 + n2
 }
 
@@ -195,4 +216,78 @@ func concat(str1, str2 string) string {
 	}
 
 	return str1 + str2
+}
+
+func multiply(n1, n2 int) int {
+	if n1 < 0 {
+		n1 = -n1
+	}
+
+	if n2 < 0 {
+		n2 = -n2
+	}
+
+	return n1 * n2
+}
+
+func ApplyOperation(n1, n2 int, callback func(n1, n2 int) int) int {
+	return callback(n1, n2)
+}
+
+func CheckCondition(n int, callback func(n1 int) bool) {
+	result := callback(n)
+
+	if result {
+		fmt.Println("Condition has been fulfilled")
+	} else {
+		fmt.Println("Condtion has not been fulfilled")
+	}
+}
+
+func isNegative(n int) bool {
+	return n < 0
+}
+
+func FormatAndPrint(input string, callback func(input string)) {
+	callback(input)
+}
+
+func stringToUpper(input string) {
+	var result string
+
+	if input == "" {
+		result = "Empty string"
+	} else {
+		result = strings.ToUpper(input)
+	}
+
+	fmt.Println(result)
+
+}
+
+func CreateMultiplier(n int) func() int {
+	return func() int {
+		if n < 0 {
+			n = -n
+		}
+		return n * n
+	}
+}
+
+func CreateGreater(greeting string) func(name string) string {
+	return func(name string) string {
+		if name == "" {
+			return "Weclome dear Guest"
+		}
+		return greeting + " " + name
+	}
+}
+
+func CreateValidator(password string) func(passToValidate string) bool {
+	return func(passToValidate string) bool {
+		if password == passToValidate {
+			return true
+		}
+		return false
+	}
 }
