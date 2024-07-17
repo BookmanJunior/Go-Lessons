@@ -128,7 +128,7 @@ func GetDiscount() {
 		return
 	}
 
-	fmt.Printf("You get %d discount\n", result)
+	fmt.Printf("You get %d%% discount\n", result)
 }
 
 func GetTemperatureDescription() {
