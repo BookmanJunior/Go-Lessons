@@ -7,13 +7,14 @@ import (
 	"strings"
 )
 
-// TODO: 18, 21, 15, 5
+// TODO: 15
 
 func main() {
 	// CountToTen()
 	// Squared()
 	// MTableOf3()
 	// Fibonacci(10)
+	// fmt.Println(GreatestCommonD(20, 30))
 	// FizzBuzz()
 	// fmt.Println(isPrime(7))
 	// Factor(18)
@@ -28,7 +29,10 @@ func main() {
 	// AllBut2or3()
 	// PrintPrimes()
 	// SumOfRangeOfNumbers()
-	IsDivisibleByNum()
+	// IsDivisibleByNum()
+	// MulTable(10)
+	// PerfectSquare()
+	PerfectCube()
 }
 
 func CountToTen() {
@@ -69,8 +73,17 @@ func Fibonacci(n int) {
 	fmt.Println(sequence)
 }
 
-func GreatestCommonD() {
+func GreatestCommonD(n1, n2 int) int {
+	if n1 == 0 || n2 == 0 {
+		fmt.Println("Both numbers must be greater than 0")
+		return 0
+	}
 
+	if n1 > n2 {
+		return n1 % n2
+	}
+
+	return n2 % n1
 }
 
 func FizzBuzz() {
@@ -205,10 +218,40 @@ func PrintPrimes() {
 	}
 }
 
+func MulTable(n int) {
+	for i := 1; i < n; i++ {
+		for j := 1; j < 10; j++ {
+			fmt.Printf("%d x %d = %d\n", i, j, i*j)
+		}
+	}
+}
+
 func AllBut2or3() {
 	for i := 0; i < 30; i++ {
 		if i%2 == 0 || i%3 == 0 {
 			continue
+		}
+		fmt.Println(i)
+	}
+}
+
+func PerfectSquare() {
+	for i := 1; i < 100; i++ {
+		res := int(math.Sqrt(float64(i)))
+		if res*res == i {
+			continue
+		} else {
+			fmt.Println(i)
+		}
+	}
+}
+
+func PerfectCube() {
+	for i := 1; i < 50; i++ {
+		res := int(math.Cbrt(float64(i)))
+		if res*res*res == i && i != 1 {
+			fmt.Println("Found perfect cube: ", i)
+			return
 		}
 		fmt.Println(i)
 	}
