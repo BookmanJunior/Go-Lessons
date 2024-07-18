@@ -7,19 +7,28 @@ import (
 	"strings"
 )
 
+// TODO: 18, 21, 15, 5
+
 func main() {
 	// CountToTen()
 	// Squared()
 	// MTableOf3()
 	// Fibonacci(10)
 	// FizzBuzz()
-	// isPrime(7)
+	// fmt.Println(isPrime(7))
 	// Factor(18)
-	// SumOfNum(4)
+	// result := SumOfNum(4)
+	// fmt.Printf("Sum of %d: %d", 4, result)
 	// IsPositive()
 	// Factorial(5)
 	// IsNumAPalindrome(222)
-	Pyramid(10)
+	// Pyramid(10)
+	// InfiniteFactorial()
+	// Sum()
+	// AllBut2or3()
+	// PrintPrimes()
+	// SumOfRangeOfNumbers()
+	IsDivisibleByNum()
 }
 
 func CountToTen() {
@@ -78,25 +87,22 @@ func FizzBuzz() {
 	}
 }
 
-func isPrime(n int) {
+func isPrime(n int) bool {
 	if n <= 1 {
-		fmt.Printf("%d is not a prime number", n)
-		return
+		return false
 	}
 
 	if n == 2 {
-		fmt.Printf("%d is a prime number", n)
-		return
+		return true
 	}
 
 	for i := 2; i < n; i++ {
 		if n%i == 0 {
-			fmt.Printf("%d is not a prime number", n)
-			return
+			return false
 		}
 	}
 
-	fmt.Printf("%d is a prime number", n)
+	return true
 }
 
 func Factor(n int) {
@@ -107,12 +113,12 @@ func Factor(n int) {
 	}
 }
 
-func SumOfNum(n int) {
+func SumOfNum(n int) int {
 	var sum int
 	for i := 1; i <= n; i++ {
 		sum += i
 	}
-	fmt.Printf("Sum of %d: %d", n, sum)
+	return sum
 }
 
 func IsPositive() {
@@ -165,5 +171,67 @@ func Pyramid(n int) {
 		mean := int(math.Floor(float64(n-i) / 2))
 		emptySpaces := strings.Repeat(" ", mean)
 		fmt.Printf("%v%v%v\n", emptySpaces, strings.Repeat("*", i), emptySpaces)
+	}
+}
+
+func InfiniteFactorial() {
+	var num int
+	prompt := "\nEnter a positive integer to get its factorials: "
+	fmt.Print(prompt)
+	fmt.Scan(&num)
+	for num > 0 {
+		Factorial(num)
+		fmt.Print(prompt)
+		fmt.Scan(&num)
+	}
+}
+
+func Sum() {
+	for {
+		var n1, n2 float64
+		prompt := "Enter two numbers separated by space: "
+		fmt.Print(prompt)
+		fmt.Scan(&n1, &n2)
+		result := n1 + n2
+		fmt.Printf("\n%v + %v = %v\n", n1, n2, result)
+	}
+}
+
+func PrintPrimes() {
+	for i := 1; i < 50; i++ {
+		if isPrime(i) {
+			fmt.Printf("%d is a prime number\n", i)
+		}
+	}
+}
+
+func AllBut2or3() {
+	for i := 0; i < 30; i++ {
+		if i%2 == 0 || i%3 == 0 {
+			continue
+		}
+		fmt.Println(i)
+	}
+}
+
+func SumOfRangeOfNumbers() {
+	for i := 1; i < 100; i++ {
+		result := SumOfNum(i)
+
+		if result > 200 {
+			return
+		}
+		fmt.Printf("Sum of %d: %d\n", i, result)
+	}
+}
+
+func IsDivisibleByNum() {
+	var num int
+	prompt := "Enter a number(Program exists if you enter a number divisible by 7): "
+	fmt.Print(prompt)
+	fmt.Scan(&num)
+	for num%7 != 0 {
+		fmt.Print(prompt)
+		fmt.Scan(&num)
 	}
 }
